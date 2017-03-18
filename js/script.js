@@ -23,12 +23,15 @@ function loadData() {
     
     
     // load NY Times articles:
-    var nytUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+    var nytUrl = "https://api.asdfnytimes.com/svc/search/v2/articlesearch.json";
     nytUrl += "?" + $.param({
       "api-key": nytimes_api_key
     });
     
     $.getJSON(nytUrl, function(data) {
+      
+      $nytHeaderElem.text("New York Times Articles About " + cityStr);
+      
       articles = data.response.docs;
       var items = [];
       $.each(articles, function(key, article) {
@@ -40,7 +43,10 @@ function loadData() {
         article_item += "</li>";
         items.push(article_item);
       });
-     
+
+      var final_list = items.join("");
+      $nytElem.append(final_list);
+      
       // $("<ul/>", {
         // // "id": "nytimes-articles",
         // "class": "my-new-list",
@@ -48,9 +54,8 @@ function loadData() {
       // }).appendTo($("#nytimes-articles"));
       
     }).done(function() {
-        console.log("ok");
     }).fail(function() {
-        console.log("not ok");
+        $nytHeaderElem.text("New York Times Articles Could Not Be Loaded");
     });
 
   return false;
