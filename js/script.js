@@ -29,15 +29,15 @@ function loadData() {
       // // nytimes_api_key;
     // });
 
+    $.getScript("js/my_keys.js", function(){
+      alert("Script loaded but not necessarily executed.");
+    });
     
     var nytUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
     nytUrl += "?" + $.param({
-      "api-key": nytimes_api_key
+      "api-key": 
     });
     
-    $.getScript("my_keys.js", function(){
-      alert("Script loaded but not necessarily executed.");
-    });
     
     $.getJSON(nytUrl, function(data) {
       articles = data.response.docs;
@@ -86,3 +86,13 @@ function loadData() {
 };
 // $('#form-container').submit(loadData);
 $('#submit-btn').click(loadData);
+
+
+    $.getScript("js/my_keys.js", function(){
+      console.log("ok");
+    });
+// import { nytimes_api_key } from "js/my_keys";
+// if(environment === 'development') {
+  // // ENV.myApiKey = process.env.apiKey;
+  // console.log("ok");
+// }
