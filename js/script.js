@@ -66,7 +66,7 @@ function loadData() {
     }, 8000);
     
     $.ajax({
-      url: "http://en.wikippedia.org/w/api.php",
+      url: "http://en.wikipedia.org/w/api.php",
       data: {
         action: "query",
         list: "search",
